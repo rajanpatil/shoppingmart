@@ -1,65 +1,37 @@
 package com.shoppingmart.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.shoppingmart.offer.NoOffer;
+import com.shoppingmart.offer.Offer;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
+@Builder
+@Getter
+@EqualsAndHashCode
 public class Product {
 
   private String name;
-  private String description;
   private int quantity;
   private double unitPrice;
-  private List<Offer> offerList;
+  private Offer offer;
 
-
-  public Product() {
-
-  }
-
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
+  public Product(String name, int quantity, double unitPrice, Offer offer) {
     this.name = name;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public int getQuantity() {
-    return quantity;
-  }
-
-  public void setQuantity(int quantity) {
     this.quantity = quantity;
-  }
-
-  public double getUnitPrice() {
-    return unitPrice;
-  }
-
-  public void setUnitPrice(double unitPrice) {
     this.unitPrice = unitPrice;
+    this.offer = offer != null ? offer : new NoOffer();
   }
 
-
-  public void addOffer(Offer offer) {
-    if (null == offerList) {
-      offerList = new ArrayList<>();
-    }
-    offerList.add(offer);
+  public double getPrice() {
+    return unitPrice * quantity;
   }
 
-  public List<Offer> getOfferList() {
-    return offerList;
+  public double getDiscountPrice() {
+    return offer.applyOffer(this);
   }
 
-
+  public double getTotalPrice() {
+    return getPrice() - getDiscountPrice();
+  }
 }
