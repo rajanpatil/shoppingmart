@@ -1,7 +1,7 @@
 # shoppingmart
 
-Shoppingmart is simple grocery store application build in java. The purpose of the application is 
-to showcase test driven approach to solve problem statement.
+Shoppingmart is simple grocery store application built in core java. The purpose of the application is 
+to showcase TDD (test driven development) approach to solve [problem statement](./problem_statement.md).
 
 ### Tools & libraries used
 - java 11
