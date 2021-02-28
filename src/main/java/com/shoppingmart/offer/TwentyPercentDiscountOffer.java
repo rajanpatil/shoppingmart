@@ -1,7 +1,9 @@
 package com.shoppingmart.offer;
 
 import com.shoppingmart.model.Product;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode
 public class TwentyPercentDiscountOffer implements Offer {
 
   @Override

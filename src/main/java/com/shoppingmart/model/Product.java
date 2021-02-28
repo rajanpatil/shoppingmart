@@ -1,5 +1,6 @@
 package com.shoppingmart.model;
 
+import com.shoppingmart.exception.ShoppingMartException;
 import com.shoppingmart.offer.NoOffer;
 import com.shoppingmart.offer.Offer;
 import lombok.Builder;
@@ -18,6 +19,9 @@ public class Product {
 
   public Product(String name, int quantity, double unitPrice, Offer offer) {
     this.name = name;
+    if (1 > quantity) {
+      throw new ShoppingMartException("Invalid product quantity!");
+    }
     this.quantity = quantity;
     this.unitPrice = unitPrice;
     this.offer = offer != null ? offer : new NoOffer();

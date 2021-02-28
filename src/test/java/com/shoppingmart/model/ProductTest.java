@@ -2,6 +2,7 @@ package com.shoppingmart.model;
 
 import static org.junit.Assert.assertEquals;
 
+import com.shoppingmart.exception.ShoppingMartException;
 import com.shoppingmart.offer.BuyOneGetOneOffer;
 import com.shoppingmart.offer.Offer;
 import com.shoppingmart.service.ProductShelf;
@@ -97,6 +98,11 @@ public class ProductTest {
 
     // then
     assertEquals(expectedTotalPrice, totalPrice, 0.00);
+  }
+
+  @Test(expected = ShoppingMartException.class)
+  public void testInvalidProductQuantity() {
+    Product milkProduct = ProductShelf.getMilk(-2);
   }
 
 }

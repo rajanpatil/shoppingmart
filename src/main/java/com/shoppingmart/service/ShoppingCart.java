@@ -3,7 +3,6 @@ package com.shoppingmart.service;
 import com.shoppingmart.model.Product;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ShoppingCart {
 

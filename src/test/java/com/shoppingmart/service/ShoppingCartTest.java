@@ -91,4 +91,5 @@ public class ShoppingCartTest {
     // then
     assertEquals(expectedTotalShoppingPrice, totalShoppingPrice, 0.00);
   }
+
 }
