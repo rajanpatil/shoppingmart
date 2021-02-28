@@ -11,16 +11,16 @@ public class TwentyPercentDiscountOfferTest {
   public void testTwentyPercentDiscountOffer() {
     // given
     double expectedDiscountPrice = 1.20;
+    Offer twentyPercentDiscountOffer = new TwentyPercentDiscountOffer();
     Product coffeeProduct = Product.builder()
         .name("Nescafe Original Instant Coffee 100 gram")
         .unitPrice(3.0)
         .quantity(2)
-        .offer(new TwentyPercentDiscountOffer())
+        .offer(twentyPercentDiscountOffer)
         .build();
-    Offer twentyPercentyDiscountOffer = new TwentyPercentDiscountOffer();
 
     // when
-    double discountPrice = twentyPercentyDiscountOffer.applyOffer(coffeeProduct);
+    double discountPrice = twentyPercentDiscountOffer.applyOffer(coffeeProduct);
 
     // then
     assertEquals(expectedDiscountPrice, discountPrice, 0.00);

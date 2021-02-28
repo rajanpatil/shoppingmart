@@ -9,7 +9,7 @@ public class ShoppingCart {
 
   private Set<Product> products = new HashSet<>();
 
-  public void addProduct(Product product) {
+  public void add(Product product) {
     products.add(product);
   }
 
@@ -22,7 +22,6 @@ public class ShoppingCart {
   }
 
   public double checkout() {
-    return products.stream()
-        .collect(Collectors.summingDouble(Product::getTotalPrice));
+    return products.stream().mapToDouble(Product::getTotalPrice).sum();
   }
 }

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.shoppingmart.offer.BuyOneGetOneOffer;
 import com.shoppingmart.offer.Offer;
-import com.shoppingmart.offer.TwentyPercentDiscountOffer;
+import com.shoppingmart.service.ProductShelf;
 import org.junit.Test;
 
 public class ProductTest {
@@ -12,36 +12,18 @@ public class ProductTest {
   @Test
   public void testCreateTescoMilkProduct() {
     // given
-    Product expectedTescoMilkProduct = Product.builder()
-        .name("Tesco Semi Skimmed Milk 4 pints")
-        .unitPrice(1.10)
-        .quantity(1)
-        .build();
-    Product tescoMilkProduct = Product.builder()
-        .name("Tesco Semi Skimmed Milk 4 pints")
-        .unitPrice(1.10)
-        .quantity(1)
-        .build();
+    Product expectedMilkProduct = ProductShelf.getMilk(1);
+    Product milkProduct = ProductShelf.getMilk(1);
 
     // then
-    assertEquals(expectedTescoMilkProduct, tescoMilkProduct);
+    assertEquals(expectedMilkProduct, milkProduct);
   }
 
   @Test
   public void testCreateProductWithOffer() {
     // given
-    Product expectedSugarProduct = Product.builder()
-        .name("Granulated Sugar 1Kg")
-        .unitPrice(0.65)
-        .quantity(1)
-        .offer(new BuyOneGetOneOffer())
-        .build();
-    Product sugarProduct = Product.builder()
-        .name("Granulated Sugar 1Kg")
-        .unitPrice(0.65)
-        .quantity(1)
-        .offer(new BuyOneGetOneOffer())
-        .build();
+    Product expectedSugarProduct = ProductShelf.getSugar(1);
+    Product sugarProduct = ProductShelf.getSugar(1);
 
     // then
     assertEquals(expectedSugarProduct, sugarProduct);
@@ -69,12 +51,7 @@ public class ProductTest {
   public void testProductPrice() {
     // given
     double expectedPrice = 13.0;
-    Product sugarProduct = Product.builder()
-        .name("Granulated Sugar 1Kg")
-        .unitPrice(0.65)
-        .quantity(20)
-        .offer(new BuyOneGetOneOffer())
-        .build();
+    Product sugarProduct = ProductShelf.getSugar(20);
 
     // when
     double price = sugarProduct.getPrice();
@@ -87,12 +64,7 @@ public class ProductTest {
   public void testProductDiscountPrice() {
     // given
     double expectedDiscountPrice = 0.65;
-    Product sugarProduct = Product.builder()
-        .name("Granulated Sugar 1Kg")
-        .unitPrice(0.65)
-        .quantity(2)
-        .offer(new BuyOneGetOneOffer())
-        .build();
+    Product sugarProduct = ProductShelf.getSugar(2);
 
     // when
     double discountPrice = sugarProduct.getDiscountPrice();
@@ -105,11 +77,7 @@ public class ProductTest {
   public void testDiscountPriceForProductWithNoOffer() {
     // given
     double expectedDiscountPrice = 0.0;
-    Product tescoMilkProduct = Product.builder()
-        .name("Tesco Semi Skimmed Milk 4 pints")
-        .unitPrice(1.10)
-        .quantity(1)
-        .build();
+    Product tescoMilkProduct = ProductShelf.getMilk(1);
 
     // when
     double discountPrice = tescoMilkProduct.getDiscountPrice();
@@ -122,12 +90,7 @@ public class ProductTest {
   public void testTotalProductPrice() {
     // given
     double expectedTotalPrice = 24.0;
-    Product coffeeProduct = Product.builder()
-        .name("Nescafe Original Instant Coffee 100 gram")
-        .unitPrice(3.00)
-        .quantity(10)
-        .offer(new TwentyPercentDiscountOffer())
-        .build();
+    Product coffeeProduct = ProductShelf.getCoffee(10);
 
     // when
     double totalPrice = coffeeProduct.getTotalPrice();

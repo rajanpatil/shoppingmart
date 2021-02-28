@@ -11,12 +11,12 @@ public class NoOfferTest {
   public void testNoOffer() {
     // given
     double expectedDiscountPrice = 0.0;
+    Offer noOffer = new NoOffer();
     Product milkProduct = Product.builder()
         .name("Tesco Semi Skimmed Milk 4 pints")
         .unitPrice(1.10)
         .quantity(1)
         .build();
-    Offer noOffer = new NoOffer();
 
     // when
     double discountPrice = noOffer.applyOffer(milkProduct);
